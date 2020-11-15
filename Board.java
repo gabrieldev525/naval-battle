@@ -59,8 +59,8 @@ public class Board {
                 do {
                     canAddShip = true;
 
-                    // if int random was 0, the ship will be add horizontally however, will be added vertically
-                    boolean horizontal = random.nextInt(1) == 0;
+                    // if generated number was 1, the ship will be add horizontally however, will be added vertically
+                    boolean horizontal = random.nextInt(2) == 1;
 
                     /**
                      * remove the size of the ship from the possible starting positions depending on the

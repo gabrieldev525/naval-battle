@@ -2,14 +2,25 @@ public class Ship {
     private String name;
     private int size;
     private int count;
+    private int id;
 
-    public Ship(String name, int size, int count) {
+    public Ship(int id, String name, int size, int count) {
+        this.setId(id);
         this.name = name;
         this.size = size;
         this.count = count;
     }
 
-    public Ship() {  }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Ship() {
+    }
 
     public String getName() {
         return name;

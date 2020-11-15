@@ -96,10 +96,7 @@ public class Board {
                             int y = horizontal ? randomY : randomY + j;
                             Position pos = new Position(currentShip, x, y);
                             board[(x * y)] = pos;
-                            System.out.println("X=" + x + " | Y=" + y + " | SIZE=" + currentShip.getSize());
                         }
-
-                        System.out.println("Added a new ship");
                     }
                 } while(!canAddShip);
             }

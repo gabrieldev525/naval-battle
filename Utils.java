@@ -91,4 +91,26 @@ public class Utils {
 
         return temp;
     }
+
+
+    /**
+     * This method return all types of ships based on SHIPS_CONFIG constants
+     *
+     * @return - A array of all ships types
+     */
+    public static Ship[] getShipsTypes() {
+        Object[][] config = Constants.SHIPS_CONFIG;
+        Ship ships[] = new Ship[config.length];
+
+        for(int i = 0; i < config.length; i++) {
+            ships[i] = new Ship(
+                (int) config[i][0],
+                (String) config[i][1],
+                (int) config[i][2],
+                (int) config[i][3]
+            );
+        }
+
+        return ships;
+    }
 }

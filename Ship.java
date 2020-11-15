@@ -4,8 +4,14 @@ public class Ship {
     private int count;
     private int id;
 
+    /**
+     * @param id - The id of ship. Used to distinct it
+     * @param name - The name of ship.
+     * @param size - The size of ship. How many of board this ship will fill
+     * @param count - How many ships of this type will has in the board
+     */
     public Ship(int id, String name, int size, int count) {
-        this.setId(id);
+        this.id = id;
         this.name = name;
         this.size = size;
         this.count = count;

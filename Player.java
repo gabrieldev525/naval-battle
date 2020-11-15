@@ -5,9 +5,15 @@ public class Player {
     // storage the positions that the player already play
     private ArrayList<String> playedMoves = new ArrayList<String>();
     private int id;
+    private Board board;
 
-    public Player(int id) {
+    /**
+     * @param id - the id of player
+     * @param board - the board of player
+     */
+    public Player(int id, Board board) {
         this.id = id;
+        this.setBoard(board);
     }
 
     public ArrayList<String> getPlayedMoves() {
@@ -29,6 +35,14 @@ public class Player {
         }
 
         return true;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public int getId() {

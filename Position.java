@@ -1,8 +1,17 @@
+/**
+ * This class is used to set the position in a board
+ */
 public class Position {
     private Ship ship;
     private int x;
     private int y;
 
+    /**
+     *
+     * @param ship - the instance of ship that has a part in this position
+     * @param x - the position x in the board
+     * @param y - the position y in the board
+     */
     public Position(Ship ship, int x, int y) {
         this.setShip(ship);
         this.setX(x);

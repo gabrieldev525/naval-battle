@@ -10,6 +10,9 @@ public class Board {
     // storage the count of ship type in the board
     private int[] BOARD_SHIP_TYPES_COUNT;
 
+    /**
+     * @param size - the size of the board. Is used to create the matriz
+     */
     public Board(int size) {
         this.size = size;
 

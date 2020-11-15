@@ -1,14 +1,12 @@
 class Main {
     public static void main(String[] args) {
-        Player player1 = new Player(1);
-        Player player2 = new Player(2);
+        Board boardPlayer1 = new Board(10);
+        boardPlayer1.generate();
 
-        Board board = new Board(10);
-        board.generate();
+        Board boardPlayer2 = new Board(10);
+        boardPlayer2.generate();
 
-        player1.addPlayedMoves("C1");
-        player1.addPlayedMoves("C3");
-        player1.addPlayedMoves("C5");
-        player1.addPlayedMoves("C6");
+        Player player1 = new Player(1, boardPlayer1);
+        Player player2 = new Player(2, boardPlayer2);
     }
 }

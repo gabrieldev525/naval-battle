@@ -22,6 +22,7 @@ public class Board {
             BOARD_SHIP_TYPES_COUNT[i] = 0;
         }
 
+        // initialize board
         board = new Position[size * size];
     }
 
@@ -35,17 +36,26 @@ public class Board {
         this.size = size;
     }
 
+    /**
+     * Generate the board of naval battle
+     * This add the ships vetically and horizontally random
+     * All this proccess is random and a new board is generated for each call
+     */
     public void generate() {
         // delete old data file
         Utils.deleteFolder("./data");
 
         Random random = new Random();
 
+        System.out.println(board.length);
+
         for(Ship currentShip : SHIP_TYPES) {
             for(int i = 0; i < currentShip.getCount(); i++) {
                 boolean canAddShip = true;
 
                 do {
+                    canAddShip = true;
+
                     // if int random was 0, the ship will be add horizontally however, will be added vertically
                     boolean horizontal = random.nextInt(1) == 0;
 
@@ -63,14 +73,16 @@ public class Board {
                     int randomX = random.nextInt(sizeX);
                     int randomY = random.nextInt(sizeY);
 
+                    // check if the random position can be added a new ship depends of ship size and orientation
                     for(Position pos : board) {
                         if(pos != null) {
-                            if(horizontal)
-                                if(pos.getX() >= randomX && pos.getX() <= randomX + currentShip.getSize())
+                            if(horizontal) {
+                                if(pos.getX() >= randomX && pos.getX() <= randomX + currentShip.getSize() && pos.getY() == randomY)
                                     canAddShip = false;
-                            else
-                                if(pos.getY() >= randomY && pos.getY() <= randomY + currentShip.getSize())
+                            } else {
+                                if(pos.getX() == randomX && pos.getY() >= randomY && pos.getY() <= randomY + currentShip.getSize())
                                     canAddShip = false;
+                            }
                         }
 
                         if(!canAddShip)
@@ -84,7 +96,10 @@ public class Board {
                             int y = horizontal ? randomY : randomY + j;
                             Position pos = new Position(currentShip, x, y);
                             board[(x * y)] = pos;
+                            System.out.println("X=" + x + " | Y=" + y + " | SIZE=" + currentShip.getSize());
                         }
+
+                        System.out.println("Added a new ship");
                     }
                 } while(!canAddShip);
             }

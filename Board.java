@@ -23,6 +23,7 @@ public class Board {
     }
 
     public void generate() {
-
+        // delete a old data file
+        Utils.deleteFolder("./data");
     }
 }

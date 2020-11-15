@@ -29,8 +29,6 @@ public class Board {
         board = new Position[size * size];
     }
 
-    public Board() {}
-
     public int getSize() {
         return size;
     }
@@ -49,8 +47,6 @@ public class Board {
         Utils.deleteFolder("./data");
 
         Random random = new Random();
-
-        System.out.println(board.length);
 
         for(Ship currentShip : SHIP_TYPES) {
             for(int i = 0; i < currentShip.getCount(); i++) {

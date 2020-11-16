@@ -59,10 +59,12 @@ public class Board {
                     else
                         sizeY -= currentShip.getSize();
 
-                    int randomX = random.nextInt(sizeX);
-                    int randomY = random.nextInt(sizeY);
+                    final int randomX = random.nextInt(sizeX);
+                    final int randomY = random.nextInt(sizeY);
 
-                    // check if the random position can be added a new ship depends of ship size and orientation (vertically and horizontally)
+                    // checks if can add a new ship at random position, depending on the size and orientation of the ship (vertically and horizontally)
+                    // You need to check if you can add the complete ship to the board using the random position x and y
+                    // You can't just verify one position and add it already, because a position can be free, but the position on your side may not be
                     for(int j = 0; j < currentShip.getSize(); j++) {
                         int index = randomX + (randomY * 10);
                         if(horizontal)
@@ -76,7 +78,7 @@ public class Board {
                         }
                     }
 
-                    // add the ship to the board
+                    // Only add the ship, if the space needed is free
                     if(canAddShip) {
                         for(int j = 0; j < currentShip.getSize(); j++) {
                             int x = horizontal ? randomX + j : randomX;

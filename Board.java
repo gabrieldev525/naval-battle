@@ -17,6 +17,11 @@ public class Board {
         SHIP_TYPES = Utils.getShipsTypes();
         // initialize board
         board = new Position[size * size];
+        for(int x = 0; x < size; x++) {
+            for(int y = 0; y < size; y++) {
+                board[x + (y * size)] = new Position(null, x, y, -1);
+            }
+        }
     }
 
     // getter and setter
@@ -76,13 +81,13 @@ public class Board {
                      * You can't just verify one position and add it already, because a position can be free, but the position on your side may not be
                      */
                     for(int j = 0; j < currentShip.getSize(); j++) {
-                        int index = randomX + (randomY * 10);
+                        int index = randomX + (randomY * size);
                         if(horizontal)
                             index += j;
                         else
-                            index += 10 * j;
+                            index += size * j;
 
-                        if(board[index] != null) {
+                        if(board[index].getShip() != null) {
                             canAddShip = false;
                             break;
                         }
@@ -96,11 +101,11 @@ public class Board {
                             Position pos = new Position(currentShip, x, y, j);
 
                             // calculate the index of matrix to append the ship
-                            int index = randomX + (randomY * 10);
+                            int index = randomX + (randomY * size);
                             if(horizontal)
                                 index += j;
                             else
-                                index += 10 * j;
+                                index += size * j;
                             board[index] = pos;
                         }
                     }

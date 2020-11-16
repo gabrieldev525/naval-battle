@@ -57,9 +57,10 @@ public class Player {
     }
 
     /**
+     * This method check if a ship already is completed in the board.
      *
-     * @param ship
-     * @return
+     * @param ship - The ship that will be used to compare and check if already complete it
+     * @return true if the ship passed by params already is completed
      */
     public boolean completeShip(Ship ship) {
         Integer shipParts[] = new Integer[ship.getSize()];
@@ -80,7 +81,7 @@ public class Player {
 
         // check if player complete all ship parts
         for(Integer part : shipParts) {
-            if(part == null)
+            if(part == null || part == -1)
                 return false;
         }
 

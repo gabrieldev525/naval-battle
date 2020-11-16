@@ -36,7 +36,7 @@ class Main {
                 chosenPosition = boardToAttack.getPositionIndex(chosenPositionIndex);
 
                 // Position has not yet been chosen
-                if (!playerTurn.isPositionAlreadyChosen(chosenPosition) && chosenPosition != null) {  // TODO: Fix this, the second position is wrong, because it's needed to register all moves, even if there isn't ship in that position
+                if (!playerTurn.isPositionAlreadyChosen(chosenPosition)) {
                     // register the move of player
                     playerTurn.addPlayedMoves(chosenPosition);
 
@@ -52,6 +52,8 @@ class Main {
                             playerHit = true;
                     } else
                         System.out.println("Player " + playerTurn.getId() + " missed");
+
+                    break;
                 }
             } while (playerTurn.isPositionAlreadyChosen(chosenPosition));
 

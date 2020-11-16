@@ -2,6 +2,7 @@ class Main {
     public static void main(String[] args) {
         Board boardPlayer1 = new Board(10);
         boardPlayer1.generate();
+        boardPlayer1.print();
 
         Board boardPlayer2 = new Board(10);
         boardPlayer2.generate();

@@ -7,9 +7,6 @@ public class Board {
 
     private Ship[] SHIP_TYPES = new Ship[Constants.SHIPS_CONFIG.length];
 
-    // storage the count of ship type in the board
-    private int[] BOARD_SHIP_TYPES_COUNT;
-
     /**
      * @param size - the size of the board. Is used to create the matriz
      */
@@ -18,13 +15,6 @@ public class Board {
 
         // get all types possibles of ships
         SHIP_TYPES = Utils.getShipsTypes();
-
-        // initialize the variable with 0
-        BOARD_SHIP_TYPES_COUNT = new int[SHIP_TYPES.length];
-        for(int i = 0; i < SHIP_TYPES.length; i++) {
-            BOARD_SHIP_TYPES_COUNT[i] = 0;
-        }
-
         // initialize board
         board = new Position[size * size];
     }
@@ -72,20 +62,18 @@ public class Board {
                     int randomX = random.nextInt(sizeX);
                     int randomY = random.nextInt(sizeY);
 
-                    // check if the random position can be added a new ship depends of ship size and orientation
-                    for(Position pos : board) {
-                        if(pos != null) {
-                            if(horizontal) {
-                                if(pos.getX() >= randomX && pos.getX() <= randomX + currentShip.getSize() && pos.getY() == randomY)
-                                    canAddShip = false;
-                            } else {
-                                if(pos.getX() == randomX && pos.getY() >= randomY && pos.getY() <= randomY + currentShip.getSize())
-                                    canAddShip = false;
-                            }
-                        }
+                    // check if the random position can be added a new ship depends of ship size and orientation (vertically and horizontally)
+                    for(int j = 0; j < currentShip.getSize(); j++) {
+                        int index = randomX + (randomY * 10);
+                        if(horizontal)
+                            index += j;
+                        else
+                            index += 10 * j;
 
-                        if(!canAddShip)
+                        if(board[index] != null) {
+                            canAddShip = false;
                             break;
+                        }
                     }
 
                     // add the ship to the board
@@ -94,7 +82,14 @@ public class Board {
                             int x = horizontal ? randomX + j : randomX;
                             int y = horizontal ? randomY : randomY + j;
                             Position pos = new Position(currentShip, x, y);
-                            board[(x * y)] = pos;
+
+                            // calculate the index of matrix to append the ship
+                            int index = randomX + (randomY * 10);
+                            if(horizontal)
+                                index += j;
+                            else
+                                index += 10 * j;
+                            board[index] = pos;
                         }
                     }
                 } while(!canAddShip);
@@ -102,5 +97,17 @@ public class Board {
         }
 
         System.out.println("BOARD GENERATE SUCCESSFULLY");
+    }
+
+    public void print() {
+        for(int i = 0; i < board.length; i++) {
+            if(i % 10 == 0)
+                System.out.println();
+
+            if(board[i] != null)
+                System.out.print(board[i].getShip().getId() + "\t");
+            else
+                System.out.print("\t");
+        }
     }
 }

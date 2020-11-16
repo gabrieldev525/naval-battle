@@ -5,17 +5,27 @@ public class Position {
     private Ship ship;
     private int x;
     private int y;
+    private int shipPartNumber;
 
     /**
      *
      * @param ship - the instance of ship that has a part in this position
-     * @param x - the position x in the board
-     * @param y - the position y in the board
+     * @param x    - the position x in the board
+     * @param y    - the position y in the board
      */
-    public Position(Ship ship, int x, int y) {
-        this.setShip(ship);
-        this.setX(x);
-        this.setY(y);
+    public Position(Ship ship, int x, int y, int shipPartNumber) {
+        this.ship = ship;
+        this.x = x;
+        this.y = y;
+        this.shipPartNumber = shipPartNumber;
+    }
+
+    public int getShipPartNumber() {
+        return shipPartNumber;
+    }
+
+    public void setShipPartNumber(int shipPartNumber) {
+        this.shipPartNumber = shipPartNumber;
     }
 
     public int getY() {

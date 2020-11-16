@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Player {
     // storage the positions that the player already play
-    private ArrayList<String> playedMoves = new ArrayList<String>();
+    private ArrayList<Position> playedMoves = new ArrayList<Position>();
     private int id;
     private Board board;
 
@@ -13,14 +13,21 @@ public class Player {
      */
     public Player(int id, Board board) {
         this.id = id;
-        this.setBoard(board);
+        this.board = board;
     }
 
-    public ArrayList<String> getPlayedMoves() {
+    public ArrayList<Position> getPlayedMoves() {
         return playedMoves;
     }
 
-    public boolean addPlayedMoves(String position) {
+    /**
+     * Add a new player moves to the array
+     * Each position is move during the game
+     *
+     * @param position
+     * @return true if the write data occurred was successfully
+     */
+    public boolean addPlayedMoves(Position position) {
         // Player can't play in the same position
         if(playedMoves.contains(position))
             return false;
@@ -29,9 +36,52 @@ public class Player {
 
         // storage the players moves in a file
         try {
-            Utils.appendDataToFile("./data/attack" + id + ".txt", position + "\n");
+            // append the data to player file
+            // format the string with the following format: x,y
+            Utils.appendDataToFile("./data/attack" + id + ".txt", position.getX() + "," + position.getY() + "\n");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks if the player already move in a position
+     *
+     * @param position
+     * @return true if already move, otherwise return false.
+     */
+    public boolean isPositionAlreadyChosen(Position position) {
+        return playedMoves.contains(position);
+    }
+
+    /**
+     *
+     * @param ship
+     * @return
+     */
+    public boolean completeShip(Ship ship) {
+        Integer shipParts[] = new Integer[ship.getSize()];
+
+        // Iterate each played moves and search for the same ship that was passed by params
+        // And add the parts in a array to check later.
+        for(Position pos : playedMoves) {
+            Ship currentShip = pos.getShip();
+
+            // If the position don't contains a ship
+            if(currentShip == null)
+                continue;
+
+            // If is a ship with same id and same type, add the part of him in a array
+            if(currentShip.getId() == ship.getId() && currentShip.getTypeId() == ship.getTypeId())
+                shipParts[pos.getShipPartNumber()] = pos.getShipPartNumber();
+        }
+
+        // check if player complete all ship parts
+        for(Integer part : shipParts) {
+            if(part == null)
+                return false;
         }
 
         return true;

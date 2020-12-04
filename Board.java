@@ -124,10 +124,10 @@ public class Board {
             if(i % 10 == 0)
                 System.out.println();
 
-            if(board[i] != null)
+            if(board[i].getShip() != null)
                 System.out.print(board[i].getShip().getTypeId() + "\t");
             else
-                System.out.print("\t");
+                System.out.print("-\t");
         }
     }
 }

@@ -21,8 +21,8 @@ public class Player {
     }
 
     /**
-     * Add a new player moves to the array
-     * Each position is move during the game
+     * Add a new player move to the array
+     * Each position is a move during the game
      *
      * @param position
      * @return true if the write data occurred was successfully
@@ -34,7 +34,7 @@ public class Player {
 
         playedMoves.add(position);
 
-        // storage the players moves in a file
+        // storage the players move in a file
         try {
             // append the data to player file
             // format the string with the following format: x,y
@@ -47,25 +47,25 @@ public class Player {
     }
 
     /**
-     * Checks if the player already move in a position
+     * Checks if player already played in a position
      *
      * @param position
-     * @return true if already move, otherwise return false.
+     * @return true if already played, otherwise return false.
      */
     public boolean isPositionAlreadyChosen(Position position) {
         return playedMoves.contains(position);
     }
 
     /**
-     * This method check if a ship already is completed in the board.
+     * This method check if a ship already Wrecked.
      *
      * @param ship - The ship that will be used to compare and check if already complete it
-     * @return true if the ship passed by params already is completed
+     * @return true if the ship already is completed
      */
     public boolean completeShip(Ship ship) {
         Integer shipParts[] = new Integer[ship.getSize()];
 
-        // Iterate each played moves and search for the same ship that was passed by params
+        // Iterate each player move and search for the same ship that was passed by params
         // And add the parts in a array to check later.
         for(Position pos : playedMoves) {
             Ship currentShip = pos.getShip();

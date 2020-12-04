@@ -49,8 +49,10 @@ public class Board {
         Random random = new Random();
 
         for(Ship currentShip : SHIP_TYPES) {
-            for(int i = 0; i < currentShip.getCount(); i++) {
-                boolean canAddShip = true;
+            int shipCount = (int) Constants.SHIPS_CONFIG[currentShip.getTypeId() - 1][3];
+
+            for(int i = 0; i < shipCount; i++) {
+                boolean canAddShip;
 
                 do {
                     canAddShip = true;
@@ -60,6 +62,21 @@ public class Board {
 
                     // if generated number was 1, the ship will be add horizontally however, will be added vertically
                     boolean horizontal = random.nextInt(2) == 1;
+
+
+                    /**
+                     *   0 1 2 3 4 5 6 7 8 9
+                     * 0 x x x x x x x x x x
+                     * 1 x x x x x x x x x x
+                     * 2 x x x x x x x x x x
+                     * 3 x x x x x x x x x x
+                     * 4 x x x x x x x x x x
+                     * 5 x x x x x x x x x x
+                     * 6 x x x x x x x x x x
+                     * 7 x x x x x x x x x x
+                     * 8 x x x x x x x x x x
+                     * 9 x x x x x x x x x x
+                     */
 
                     /**
                      * remove the size of the ship from the possible starting positions depending on the
@@ -81,7 +98,7 @@ public class Board {
                      * You can't just verify one position and add it already, because a position can be free, but the position on your side may not be
                      */
                     for(int j = 0; j < currentShip.getSize(); j++) {
-                        int index = randomX + (randomY * size);
+                        int index = randomX + (randomY * size);  // 35
                         if(horizontal)
                             index += j;
                         else

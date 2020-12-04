@@ -8,6 +8,7 @@ class Main {
         // initialize players boards
         Board boardPlayer1 = new Board(10);
         boardPlayer1.generate();
+        // boardPlayer1.print();
 
         Board boardPlayer2 = new Board(10);
         boardPlayer2.generate();
@@ -79,7 +80,7 @@ class Main {
             e.printStackTrace();
         }
 
-        System.out.println("FIM DE JOGO");
-        System.out.println("The player " + playerTurn.getId() + " win");
+        System.out.println("Gameover");
+        System.out.println("Player " + playerTurn.getId() + " won");
     }
 }

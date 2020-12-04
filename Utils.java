@@ -106,8 +106,7 @@ public class Utils {
             ships[i] = new Ship(
                 (int) config[i][0],
                 (String) config[i][1],
-                (int) config[i][2],
-                (int) config[i][3]
+                (int) config[i][2]
             );
         }
 
